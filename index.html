@@ -14,9 +14,9 @@
     <script>
         async function createScriptTag() {
             const shop = "my-app-test-404.myshopify.com"; // Your store name
-            const accessToken = "5c34217fd61e9b188956c90e7f73d5cb-1740169067"; // Directly set your access token here
-            const scriptUrl = "https://speedyserpofficial.github.io/refactored-dollop/404-redirection.js";
-            const apiUrl = `https://${shop}/admin/api/2023-10/script_tags.json`; // Updated API version
+            const accessToken = "5c34217fd61e9b188956c90e7f73d5cb-1740169067"; // Your correct access token here
+            const scriptUrl = "https://speedyserpofficial.github.io/refactored-dollop/404-redirection.js"; // URL to your JS file
+            const apiUrl = `https://${shop}/admin/api/2023-10/script_tags.json`; // Make sure the API version is correct
 
             try {
                 const response = await axios.post(apiUrl, {
@@ -35,7 +35,8 @@
                 console.log(response.data);
             } catch (error) {
                 alert("❌ Error creating ScriptTag. Check the console.");
-                console.error(error.response ? error.response.data : error.message);
+                // Enhanced error logging
+                console.error("❌ Error details:", error.response ? error.response.data : error.message);
             }
         }
     </script>
