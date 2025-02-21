@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install 404 Redirect App</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Shopify 404 Auto Redirect App</h1>
+    <p>Click the button below to install the redirect script on your store.</p>
+    <button onclick="createScriptTag()">Install on Shopify</button>
+
+    <script>
+        async function createScriptTag() {
+            const shop = "my-app-test-404.myshopify.com"; // Your store name
+            const accessToken = prompt("Enter your Shopify Access Token:"); 
+            if (!accessToken) {
+                alert("5c34217fd61e9b188956c90e7f73d5cb-1740169067");
+                return;
+            }
+
+            const scriptUrl = "https://speedyserpofficial.github.io/refactored-dollop/404-redirection.js";
+            const apiUrl = `https://${shop}/admin/api/2023-01/script_tags.json`;
+
+            try {
+                const response = await axios.post(apiUrl, {
+                    script_tag: {
+                        event: 'onload',
+                        src: scriptUrl
+                    }
+                }, {
+                    headers: {
+                        'X-Shopify-Access-Token': accessToken,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                alert("✅ ScriptTag created successfully!");
+                console.log(response.data);
+            } catch (error) {
+                alert("❌ Error creating ScriptTag. Check the console.");
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>
